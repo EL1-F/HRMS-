@@ -5,18 +5,22 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
 @Entity
 @Table(name="administrators")
+@NoArgsConstructor  //parametresiz consructor
 public class Administrator extends User{
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
@@ -31,10 +35,6 @@ public class Administrator extends User{
 	
 	@Column(name="year_of_birth")
 	private LocalDate yearOfBirth;
-	
-	public Administrator() {
-		
-	}
 	
 	public Administrator(int id, String name, String lastName, String nationalityId,
 			LocalDate yearOfBirth,

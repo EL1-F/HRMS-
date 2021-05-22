@@ -5,18 +5,23 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="activation_codes")
+@AllArgsConstructor
+@NoArgsConstructor
 public class ActivationCode {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
@@ -31,19 +36,5 @@ public class ActivationCode {
 	
 	@Column(name="confirmed_date")
 	private LocalDate confirmedDate;
-	
-	public ActivationCode() {
-		
-	}
-
-	public ActivationCode(int id, int userId, String activationCode,
-			boolean isConfirmed, LocalDate confirmedDate) {
-		
-		this.id = id;
-		this.userId = userId;
-		this.activationCode = activationCode;
-		this.isConfirmed = isConfirmed;
-		this.confirmedDate = confirmedDate;
-	}
 
 }
