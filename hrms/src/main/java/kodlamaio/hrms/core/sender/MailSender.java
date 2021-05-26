@@ -1,28 +1,30 @@
 package kodlamaio.hrms.core.sender;
 
 
-import kodlamaio.hrms.entities.concretes.Candidate;
+import java.util.UUID;
 
-public class MailSender implements MailSenderService<Candidate> {
+import org.springframework.stereotype.Service;
+
+@Service
+public class MailSender<T> implements SenderService<T> {
 	
-	String verifyCode;
+	UUID verifyCode;
 
 	@Override
-	public String toProduceCode(Candidate entity) {
-		// TODO Auto-generated method stub
-		this.verifyCode = String.valueOf(entity.getId())+entity.getPassword();
+	public UUID toProduceCode() {
+		this.verifyCode = UUID.randomUUID();
 		 return verifyCode;	
 	}
 
 	@Override
-	public void sendMail(Candidate entity) {
-		System.out.println(entity.getName() +" "+entity.getLastName()+
-				" kişisine e-mail gönderildi.\n"+ verifyCode);
+	public void send(String email) {
+		
+		System.out.println("Gönderilen kod:\n"+ verifyCode);
 		
 	}
 
 	@Override
-	public boolean certifyCode(String code) {
+	public boolean certifyCode(UUID code) {
 		if(userCheck()) {
 			if(this.verifyCode ==code) {
 				return true;
@@ -34,7 +36,7 @@ public class MailSender implements MailSenderService<Candidate> {
 		}
 	}
 
-	@Override
+	
 	public boolean userCheck() {
 		//kullanıcının uzantıya tıklayıp tıklamadığı durumu simule eder
 		return true;

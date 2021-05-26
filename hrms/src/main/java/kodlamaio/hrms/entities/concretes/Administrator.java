@@ -4,11 +4,10 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,14 +15,11 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="administrators")
+@PrimaryKeyJoinColumn(name = "user_id")
 @NoArgsConstructor  //parametresiz consructor
+@AllArgsConstructor
 public class Administrator extends User{
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
-	
+
 	@Column(name="name")
 	private String name;
 	
@@ -35,15 +31,5 @@ public class Administrator extends User{
 	
 	@Column(name="year_of_birth")
 	private LocalDate yearOfBirth;
-	
-	public Administrator(int id, String name, String lastName, String nationalityId,
-			LocalDate yearOfBirth,
-			String password, String email) {
-		super(id,password,email);
-		this.name = name;
-		this.lastName = lastName;
-		this.nationalityId = nationalityId;
-		this.yearOfBirth = yearOfBirth;
-	}
 
 }

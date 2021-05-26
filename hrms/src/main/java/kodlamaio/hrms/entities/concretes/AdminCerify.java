@@ -28,7 +28,7 @@ public class AdminCerify {
 	@Column(name="employer_id")
 	private int employerId;
 	
-	@Column(name="adminisrator-id")
+	@Column(name="adminisrator_id")
 	private int administatorId;
 	
 	@Column(name="is_confirmed")
