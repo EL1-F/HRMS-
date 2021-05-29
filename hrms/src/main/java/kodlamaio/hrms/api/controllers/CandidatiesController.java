@@ -16,12 +16,12 @@ import kodlamaio.hrms.entities.concretes.Candidate;
 
 @RestController
 @RequestMapping("api/candidate")
-public class CandidateController {
+public class CandidatiesController {
 	
 	private CandidateService candidateService;
 
 	@Autowired
-	public CandidateController(CandidateService candidateService) {
+	public CandidatiesController(CandidateService candidateService) {
 		super();
 		this.candidateService = candidateService;
 	}

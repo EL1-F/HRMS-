@@ -14,11 +14,11 @@ import kodlamaio.hrms.entities.concretes.Employer;
 
 @RestController
 @RequestMapping("api/employer")
-public class EmployerController {
+public class EmployersController {
 	
 	private EmployerService employerService;
 
-	public EmployerController(EmployerService employerService) {
+	public EmployersController(EmployerService employerService) {
 		super();
 		this.employerService = employerService;
 	}
@@ -33,5 +33,7 @@ public class EmployerController {
 	public Result add(Employer employer) {
 		return this.employerService.add(employer);
 	}
+	
+	
 
 }

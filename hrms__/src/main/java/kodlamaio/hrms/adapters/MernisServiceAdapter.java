@@ -1,6 +1,6 @@
 package kodlamaio.hrms.adapters;
 
-import java.rmi.RemoteException;
+
 
 import kodlamaio.hrms.core.user_check.UserCheckService;
 import kodlamaio.hrms.entities.concretes.Candidate;
