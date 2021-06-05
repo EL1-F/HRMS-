@@ -21,18 +21,18 @@ import lombok.NoArgsConstructor;
 @Table(name="jobs")
 @AllArgsConstructor //parametreli consructor
 @NoArgsConstructor //parametresiz consructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "JobPosition"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "jobPositions"})
 public class Job {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="job_id")
 	private int id;
 	
 	@Column(name="position_name")
 	private String position;
 	
 	@OneToMany(mappedBy = "job")
-	private List<JobPosition> jobPosition;
+	private List<JobPosition> jobPositions ;
 
 }

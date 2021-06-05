@@ -28,13 +28,15 @@ public class JobPosition {
 	@Column(name="id")
 	private int id;
 	
-	@ManyToOne()
-	@JoinColumn(name = "city_id") //name verirken tablo adı_id şeklinde yazıyoruz
-	private City city;
+	
 
 	@ManyToOne()
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
+	
+	@ManyToOne()
+	@JoinColumn(name = "city_id") 
+	private City city;
 
 	@ManyToOne()
 	@JoinColumn(name = "job_id")
@@ -60,5 +62,5 @@ public class JobPosition {
 	
 	@Column(name="is_active", columnDefinition = "boolean default true")
 	private boolean isActive;
-
+	
 }

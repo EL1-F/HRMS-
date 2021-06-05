@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobPositionService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
+import kodlamaio.hrms.entities.dtos.JobPositionDto;
 
 @Service
 public class JobPositionManager implements JobPositionService{
@@ -70,5 +70,35 @@ public class JobPositionManager implements JobPositionService{
 		
 		return new SuccessDataResult<List<JobPosition>>(this.positionDao.getByIsActiveTrue());
 	}
+
+	@Override
+	public DataResult<List<JobPositionDto>> getByIsActiveAndEmployer_CompanyName
+	(boolean isActive,String companyName) {
+		
+		return new SuccessDataResult<List<JobPositionDto>>
+		(this.positionDao.getByIsActiveAndEmployer_CompanyName(isActive,companyName));
+	}
+
+	@Override
+	public DataResult<List<JobPositionDto>> getByIsActiveAndCity_CityName(boolean isActive, String city) {
+		return new SuccessDataResult<List<JobPositionDto>>
+		(this.positionDao.getByIsActiveAndCity_CityName(isActive,city.toUpperCase()));
+	}
+
+	@Override
+	public DataResult<List<JobPositionDto>> getJobPositionDetails() {
+		return new SuccessDataResult<List<JobPositionDto>>(this.positionDao.getJobPositionDetails(),
+				"Listelendi.");
+	}
+
+	@Override
+	public Result updateIsActive(int jobPositionId) {
+		this.positionDao.updateDeisActiveJobPosition(jobPositionId);
+		return new SuccessResult("Pozisyon durumu güncellendi");
+	}
+
+	
+	
+	
 	
 }
