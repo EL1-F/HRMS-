@@ -2,8 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-import javax.persistence.PostUpdate;
-import javax.websocket.server.PathParam;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
