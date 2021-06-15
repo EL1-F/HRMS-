@@ -5,39 +5,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.JobService;
+import kodlamaio.hrms.business.abstracts.WorkingTimeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Job;
+import kodlamaio.hrms.entities.concretes.WorkingTime;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/jobs")
-public class JobsController {
-	
-	private JobService jobService;
-	
+@RequestMapping("api/workingtimes")
+public class WorkingTimesController {
+
+	private WorkingTimeService timeService;
+
 	@Autowired
-	public JobsController(JobService jobService) {
+	public WorkingTimesController(WorkingTimeService timeService) {
 		super();
-		this.jobService = jobService;
+		this.timeService = timeService;
 	}
-
+	
 	@GetMapping("/getall")
-	public DataResult<List<Job>> getAll(){
-		
-		return this.jobService.getAll();
-		
+	DataResult<List<WorkingTime>> getAll(){
+		return this.timeService.getAll();
 	}
 	
 	
-	@PostMapping("/add")
-	public Result add(Job job) {
-		return this.jobService.add(job);
+	@GetMapping("/getById")
+	Result getById(int id) {
+		return this.timeService.getById(id);
 	}
-
 }

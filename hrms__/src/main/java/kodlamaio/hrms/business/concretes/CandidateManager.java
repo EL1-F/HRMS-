@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.Controls;
@@ -37,7 +38,7 @@ public class CandidateManager implements CandidateService{
 	private SenderService<Candidate> senderService;
 	private UserCheckService userCheckService;
 
-
+	@Autowired
 	public CandidateManager(CandidateDao candidateDao, LanguageService languageService,
 			ExperienceService experienceService, LinkService linkService, ImageService imageService,
 			SkillService skillService, EducationService educationService, SenderService<Candidate> senderService,

@@ -26,22 +26,23 @@ public interface JobPositionDao extends JpaRepository<JobPosition, Integer>{
 	List<JobPosition> getByIsActiveTrue();
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobPositionDto"
-			+ "(jp.id,e.companyName,j.position,c.cityName,jp.numberOfEmployees,jp.publishDate,jp.applicationDeadline) "
-			+ "From JobPosition jp inner join jp.employer e inner join jp.job j inner join jp.city c "
+			+ "(jp.id,e.companyName,j.position,c.cityName,jp.numberOfEmployees,jp.publishDate,jp.applicationDeadline,wt.timeName,wow.wayName) "
+			+ "From JobPosition jp inner join jp.employer e inner join jp.job j inner join jp.city c inner join jp.workingTime wt inner join jp.wayOfWorking wow "
 			+ " WHERE e.companyName=:companyName AND jp.isActive=:isActive")
 	List<JobPositionDto> getByIsActiveAndEmployer_CompanyName(@Param("isActive") boolean isActive,
 			@Param("companyName") String companyName);
 	
 
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobPositionDto"
-			+ "(jp.id,e.companyName,j.position,c.cityName,jp.numberOfEmployees,jp.publishDate,jp.applicationDeadline) "
-			+ "From JobPosition jp inner join jp.employer e inner join jp.job j inner join jp.city c "
+			+ "(jp.id,e.companyName,j.position,c.cityName,jp.numberOfEmployees,jp.publishDate,jp.applicationDeadline,wt.timeName,wow.wayName) "
+			+ "From JobPosition jp inner join jp.employer e inner join jp.job j inner join jp.city c inner join jp.workingTime wt inner join jp.wayOfWorking wow "
 			+ " WHERE c.cityName=:city AND jp.isActive=:isActive")
 	List<JobPositionDto> getByIsActiveAndCity_CityName(@Param("isActive") boolean isActive,
 			@Param("city") String city);
 	
-	@Query("Select new kodlamaio.hrms.entities.dtos.JobPositionDto(jp.id,e.companyName,j.position,c.cityName,jp.numberOfEmployees,jp.publishDate,jp.applicationDeadline) "
-			+ "From JobPosition jp inner join jp.employer e inner join jp.job j inner join jp.city c "
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobPositionDto"
+			+ "(jp.id,e.companyName,j.position,c.cityName,jp.numberOfEmployees,jp.publishDate,jp.applicationDeadline,wt.timeName,wow.wayName) "
+			+ "From JobPosition jp inner join jp.employer e inner join jp.job j inner join jp.city c inner join jp.workingTime wt inner join jp.wayOfWorking wow  "
 			+ "where jp.isActive = true")
 	List<JobPositionDto> getJobPositionDetails();
 	
